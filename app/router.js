@@ -5,7 +5,7 @@
  */
 module.exports = app => {
   const { router, controller, config: { apiPrefix } } = app;
-  router.get('/', controller.home.index);
-  router.get('/user', controller.user.list);
-  router.post('/allSites', controller.website.getAllSites);
+  require('./router/home')(app);
+  require('./router/user')(app);
+  require('./router/website')(app);
 };
