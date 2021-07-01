@@ -17,6 +17,7 @@ module.exports = appInfo => {
       dir: '/tmp',
     },
   };
+  
   config.security = {
     csrf: {
       enable: false,

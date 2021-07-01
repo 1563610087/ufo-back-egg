@@ -12,11 +12,12 @@ module.exports = appInfo => {
    **/
   const config = exports={}
   config.sequelize = {
-    host: '127.0.0.1',
-    port: 3306,
-    database: 'ufo-nav',
+    dialect: 'mysql',
+    host: 'sh-cynosdbmysql-grp-f1vualkg.sql.tencentcdb.com',
     username: 'root',
-    password: "123456",
+    password: 'yaosheng@123',
+    port: '24842',
+    database: 'ufo-nav'
   }
   return {
     ...config,
