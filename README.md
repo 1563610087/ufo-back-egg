@@ -67,6 +67,8 @@ TENCENT_SECRET_KEY=123
 
 ## 3 数据库
 
+#### 3.1 安装orm框架
+
 项目采用[sequelize](http://docs.sequelizejs.com/) 
 
 - 安装
@@ -93,5 +95,39 @@ config.sequelize = {
   port: 3306,
   database: 'egg-sequelize-doc-default',
 };
+```
+
+### 3.2 安装sequelize-automate
+
+sequelize-automate可以自动生成的 Model 文件
+
+```
+npm install -g sequelize-automate
+```
+
+`sequelize-automate` 命令支持的参数主要有：
+
+- `--type, -t` 指定 models 代码风格，当前可选值：`js` `ts` `egg` `midway`
+- `--dialect, -e` 数据库类型，可选值：`mysql` `sqlite` `postgres` `mssql` `mariadb`
+- `--host, -h` 数据库 host
+- `--database, -d` 数据库名
+- `--user, -u` 数据库用户名
+- `--password, -p` 数据库密码
+- `--port, -P `数据库端口，默认：MySQL/MariaDB 3306，Postgres 5432，SSQL: 1433
+- `--output, -o `指定输出 models 文件的目录，默认会生成在当前目录下 `models` 文件夹中
+- `--camel, -C` models 文件中代码是否使用驼峰发命名，默认 `false`
+- `--emptyDir, -r` 是否清空 models 目录（即 `-o` 指定的目录），如果为 `true`，则生成 models 之前会清空对应目录，默认 `false`
+- `--config, -c` 指定配置文件，可以在一个配置文件中指定命令的参数
+
+更详细的参数介绍可参考文档：[sequelize-automate](https://github.com/nodejh/sequelize-automate#command-line) 
+
+> 注意事项，如果是全局安装的sequelize-automate，则需要全局安装mysql2，否则会报错
+
+### 3.3 生成model
+
+根据不同的框架指定生成的类型，本项目采用的是egg.js框架，因此生成的类型指定egg。
+
+```bash
+sequelize-automate -t egg -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e mysql -o app/model
 ```
 

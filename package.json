@@ -19,7 +19,8 @@
     "deploy": "serverless deploy",
     "dev": "egg-bin dev",
     "lint": "eslint .",
-    "ci": "npm run lint && npm run cov"
+    "ci": "npm run lint && npm run cov",
+    "model":"sequelize-automate -t egg  -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e mysql -o app/model"
   },
   "ci": {
     "version": "10"
