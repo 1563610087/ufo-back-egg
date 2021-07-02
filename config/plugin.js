@@ -14,5 +14,16 @@ module.exports = {
   sequelize: {
     enable: true,
     package: 'egg-sequelize',
+  },
+  //引入参数校验
+  validate: {
+    enable: true,
+    package: 'egg-validate',
+  },
+  //引入egg-cors包
+  cors: {
+    enable: true,
+    package: 'egg-cors',
   }
+
 };

@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "egg": "^2.15.1",
+    "egg-cors": "^2.2.3",
     "egg-sequelize": "^6.0.0",
+    "egg-validate": "^2.0.2",
     "egg-view-nunjucks": "^2.2.0",
     "mysql2": "^2.2.5"
   },
@@ -20,7 +22,7 @@
     "dev": "egg-bin dev",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "model":"sequelize-automate -t egg  -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e mysql -o app/model"
+    "model": "sequelize-automate -t egg  -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e mysql -o app/model"
   },
   "ci": {
     "version": "10"

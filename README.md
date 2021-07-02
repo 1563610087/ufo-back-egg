@@ -132,3 +132,93 @@ sequelize-automate -t egg -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e m
 ```
 
 ## 4 返回结果
+
+```javascript
+class BaseModel {
+  constructor(data, message) {
+    //传入的data要为对象，message为字符串类型
+    //假设只传入了一个字符串
+    if (typeof data === 'string') {
+      this.message = data
+      data = null
+      message = null
+    }
+    if (data) {
+      this.data = data
+    }
+    if (message) {
+      this.message = message
+    }
+  }
+}
+
+
+class SuccessModel extends BaseModel {
+  constructor(data, message) {
+    super(data, message)
+    this.error_code = 0
+    this.msg = 'success'
+  }
+}
+
+class ErrorModel extends BaseModel {
+  constructor(data, message) {
+    super(data, message)
+    this.error_code = -1
+    this.msg = "fail"
+  }
+}
+
+module.exports = {
+  SuccessModel,
+  ErrorModel
+}
+```
+
+## 5 路由拆分
+
+## 6 参数校验
+
+```
+npm install --save egg-validate
+```
+
+```JavaScript
+// config/plugin.js
+exports.validate = {
+  enable: true,
+  package: 'egg-validate',
+};
+```
+
+## 7 配置跨域
+
+安装
+
+```
+npm i egg-cors --save 
+```
+
+引入
+
+// config/plugin.js
+
+```
+//引入egg-cors包
+    cors: {
+        enable: true,
+        package: 'egg-cors',
+    }
+```
+
+配置
+
+```javascript
+/* 配置允许跨域 */
+    config.cors = {
+        credentials: true,
+        origin: "*", //允许任何跨域，若只允许个别IP跨域，则：origin:['http://localhost:8080']
+        allowMethods: 'GET,PUT,POST,DELETE', // 被允许的请求方式
+    };
+```
+

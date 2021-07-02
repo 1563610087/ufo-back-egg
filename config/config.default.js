@@ -17,12 +17,19 @@ module.exports = appInfo => {
       dir: '/tmp',
     },
   };
-  
+
   config.security = {
     csrf: {
       enable: false,
     }
-  }
+  },
+
+    /* 配置允许跨域 */
+    config.cors = {
+      credentials: true,
+      origin: "*", //允许任何跨域，若只允许个别IP跨域，则：origin:['http://localhost:8080']
+      allowMethods: 'GET,PUT,POST,DELETE', // 被允许的请求方式
+    }
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1576384476895_3620';
