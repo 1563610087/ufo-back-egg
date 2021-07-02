@@ -67,7 +67,7 @@ TENCENT_SECRET_KEY=123
 
 ## 3 数据库
 
-#### 3.1 安装orm框架
+### 3.1 安装orm框架
 
 项目采用[sequelize](http://docs.sequelizejs.com/) 
 
@@ -131,3 +131,4 @@ npm install -g sequelize-automate
 sequelize-automate -t egg -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e mysql -o app/model
 ```
 
+## 4 返回结果
