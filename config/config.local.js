@@ -11,6 +11,7 @@ module.exports = appInfo => {
    * @type {Egg.EggAppConfig}
    **/
   const config = exports={}
+  config.middleware = ['errorHandler'],
   config.sequelize = {
     host: '127.0.0.1',
     port: 3306,

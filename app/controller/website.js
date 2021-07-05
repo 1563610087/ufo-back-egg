@@ -6,12 +6,8 @@ class WebsiteController extends Controller {
   //获取所有网站
   async getAllSites() {
     const { ctx } = this;
-    try {
       const list = await ctx.service.website.getAllSites()
       ctx.body = new SuccessModel(list)
-    } catch (error) {
-      ctx.body = error
-    } 
   }
 }
 

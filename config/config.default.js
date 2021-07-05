@@ -23,7 +23,6 @@ module.exports = appInfo => {
       enable: false,
     }
   },
-
     /* 配置允许跨域 */
     config.cors = {
       credentials: true,
