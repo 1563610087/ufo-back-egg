@@ -24,6 +24,12 @@ module.exports = {
   cors: {
     enable: true,
     package: 'egg-cors',
+  },
+
+  http : {
+    enable: true,
+    package: 'egg-axios'
   }
+
 
 };

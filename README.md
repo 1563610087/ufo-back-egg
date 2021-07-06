@@ -223,3 +223,89 @@ npm i egg-cors --save
 ```
 
 ## 8 错误处理
+
+添加中间件
+
+```
+module.exports = (options, app) => {
+return async function errorHandler(ctx, next) {
+    try {
+      await next();
+    } catch (err) {
+      // 所有的异常都在 app 上触发一个 error 事件，框架会记录一条错误日志
+      ctx.app.emit('error', err, ctx);
+
+      const status = err.status || 500;
+      // 生产环境时 500 错误的详细错误内容不返回给客户端，因为可能包含敏感信息
+      const error = status === 500 && ctx.app.config.env === 'prod'
+        ? 'Internal Server Error'
+        : err.message;
+
+      // 从 error 对象上读出各个属性，设置到响应中
+      ctx.body = { 
+        code:status,
+        error:error,
+      };
+      if (status === 422) {
+        ctx.body.detail = err.errors;
+      }
+      ctx.status = status;
+      
+    }
+  };
+};
+```
+
+引入中间件
+
+```
+config.middleware = ['errorHandler'],
+```
+
+## 9 egg发送请求
+
+9.1 原生命令
+
+egg的get请求方式：
+
+```
+this.ctx.curl(url, option)复制代码
+```
+
+url:当然是请求地址了
+
+option:
+
+| method            | 请求方法，默认为GET。可以是GET，POST，DELETE或PUT            |
+| ----------------- | ------------------------------------------------------------ |
+| data              | 要发送的数据。将自动进行字符串化                             |
+| dataType          | 字符串-响应数据的类型。可能是text或json                      |
+| headers           | 请求标头                                                     |
+| timeout           | 请求超时                                                     |
+| auth              | username:password在HTTP基本授权中使用                        |
+| followRedirect    | 遵循HTTP 3xx响应作为重定向。默认为false                      |
+| gzip              | 让您在请求连接时获取res对象，默认为false                     |
+| nestedQuerystring | urllib默认使用querystring对不支持嵌套对象的表单数据进行字符串化，通过将此选项设置为true，将使用qs而不是querystring支持嵌套对象 |
+
+如果请求的结果返回的是json数据，则需要指定数据类型
+
+```
+this.ctx.curl('https://www.example.com', {dataType: 'json'})
+```
+
+```
+this.ctx.curl('https://www.example.com', {
+  method: 'GET/POST',
+  dataType: 'json',
+  headers: {
+       token: 'xxx'  
+  },
+  data: {
+    id: 1
+  }
+  ...
+})
+```
+
+### 9.2 安装axios
+
