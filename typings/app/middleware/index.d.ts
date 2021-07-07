@@ -3,11 +3,9 @@
 
 import 'egg';
 import ExportErrorHandler = require('../../../app/middleware/error_handler');
-import ExportGetIcon = require('../../../app/middleware/getIcon');
 
 declare module 'egg' {
   interface IMiddleware {
     errorHandler: typeof ExportErrorHandler;
-    getIcon: typeof ExportGetIcon;
   }
 }
