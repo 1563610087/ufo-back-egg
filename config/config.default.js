@@ -24,7 +24,7 @@ module.exports = appInfo => {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     },
-    timeout: 10000
+    timeout: 20000
   }
 
   config.security = {
