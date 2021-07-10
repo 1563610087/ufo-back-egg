@@ -26,9 +26,16 @@ module.exports = {
     package: 'egg-cors',
   },
 
+  //引入axios
   http : {
     enable: true,
     package: 'egg-axios'
+  },
+
+  //引入jwt
+  jwt: {
+    enable: true,
+    package: "egg-jwt"
   }
 
 

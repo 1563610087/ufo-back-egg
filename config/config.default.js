@@ -26,7 +26,10 @@ module.exports = appInfo => {
     },
     timeout: 20000
   }
-
+  //配置jwt
+  config.jwt = {
+    secret: "123456"//自定义 token 的加密条件字符串
+  },
   config.security = {
     csrf: {
       enable: false,

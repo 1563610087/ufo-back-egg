@@ -3,9 +3,11 @@
 
 import 'egg';
 import ExportErrorHandler = require('../../../app/middleware/error_handler');
+import ExportLoginJwt = require('../../../app/middleware/login_jwt');
 
 declare module 'egg' {
   interface IMiddleware {
     errorHandler: typeof ExportErrorHandler;
+    loginJwt: typeof ExportLoginJwt;
   }
 }

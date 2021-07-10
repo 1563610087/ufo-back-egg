@@ -43,7 +43,9 @@ class WebsiteController extends Controller {
   async getIcon() {
     const { ctx } = this;
       let data= await getIconUrl(ctx)
-      ctx.body = data
+      ctx.body = new SuccessModel({
+        iconUrl:data
+      })
   }
 }
 

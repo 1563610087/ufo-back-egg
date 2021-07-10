@@ -3,13 +3,13 @@ const Service = require('egg').Service;
 class WebsiteService extends Service {
   async getAllSites() {
     const { app, ctx } = this;
-    const { classify_id, classify_type } = ctx.request.body
+    const { classifyId } = ctx.request.body
     ctx.validate({
-      classify_id: {
+      classifyId: {
         type: 'number'
       }
     }, ctx.request.body)
-    const sql1 = `select * from website_1 where classify_id=${classify_id}`;
+    const sql1 = `select * from website_1 where classify_id=${classifyId}`;
     const sql2 = `select * from website_2`;
     const sql3 = `select * from website_3`;
     const [results1] = await app.model.query(sql1);
@@ -31,14 +31,14 @@ class WebsiteService extends Service {
         }
       })
     })
-    return results1
+    return results1[0]
   }
 
   //添加二级分类
   async addWeb() {
     const { app, ctx } = this;
-    const { classify_id, web_name } = ctx.request.body
-    const sql = `insert into website_2 (web_name,classify_id) values ('${web_name}','${classify_id}')`
+    const { classifyId, webName } = ctx.request.body
+    const sql = `insert into website_2 (web_name,classify_id) values ('${webName}','${classifyId}')`
     return app.model.query(sql);
   }
 

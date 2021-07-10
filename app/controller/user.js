@@ -2,7 +2,7 @@
 
 const { Controller } = require('egg');
 const { sleep } = require('../utils/index');
-
+const { SuccessModel, ErrorModel } = require('../utils/resModel.js')
 
 class UserController extends Controller {
   async list() {
@@ -15,6 +15,13 @@ class UserController extends Controller {
         email: 'yuga_sun@163.com',
       },
     ];
+  }
+
+  async login() {
+    const { ctx,app } = this
+    const data = ctx.request.body
+    const token = app.jwt.sign(data, app.config.jwt.secret)
+    ctx.body = new SuccessModel({token:token})
   }
 }
 

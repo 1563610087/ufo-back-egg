@@ -226,7 +226,7 @@ npm i egg-cors --save
 
 添加中间件
 
-```
+```javascript
 module.exports = (options, app) => {
 return async function errorHandler(ctx, next) {
     try {
@@ -387,3 +387,94 @@ module.exports = {
 }
 ```
 
+## 10 登录方案
+
+jwt token方案
+
+1 安装
+
+```
+npm install egg-jwt --save
+```
+
+2 引入插件，同上
+
+3 使用
+
+```javascript
+sync login() {
+    const { ctx,app } = this
+    const data = ctx.request.body
+    //生成token
+    const token = app.jwt.sign(data, app.config.jwt.secret)
+    ctx.body = new SuccessModel({token:token})
+  }
+```
+
+4 编写中间件校验
+
+```javascript
+const whiteList=['/user/login']//白名单（一般登录注册这两个接口不需要校验token）此处也可配置在全局
+
+module.exports=(options)=>{
+    return async function(ctx,next){
+        if(!whiteList.some(item=>item==ctx.request.url)){//判断接口路径是否在白名单
+            let token = ctx.request.header.authorization//拿到token
+            if(token){//如果token存在
+                let decoded = ctx.app.jwt.verify(token.slice(7),ctx.app.config.jwt.secret)//解密token
+                if(decoded&&decoded.message){
+                    ctx.body={
+                        code:0,
+                        msg:decoded.message
+                    }
+                }else{
+                    ctx.username=decoded.username//把接口带来的用户名存在ctx上，方便后续做判断。
+                    await next()
+                }
+            }else{
+                ctx.body={
+                    code:0,
+                    msg:'没有token'
+                }
+            }
+        }else{
+            await next()
+        }
+    }
+}
+```
+
+5 引入中间件
+
+在配置文件中，引入全局中间件
+
+## 11 中间件
+
+egg.js编写中间件按约定放入middleware文件夹中，中间件的使用方式有三种
+
+* 应用中间件
+* 插件中间件
+* 路由中间件
+
+### 11.1 应用中间件
+
+在config.default.js文件中引入中间件
+
+**注意： 配置需要的中间件，数组顺序即为中间件的加载顺序**
+
+```javascript
+module.exports = {
+  middleware: [ 'gzip' ],
+
+  // 配置 gzip 中间件的配置
+  gzip: {
+    threshold: 1024, // 小于 1k 的响应体不压缩
+  },
+};
+```
+
+### 11.2 插件中间件
+
+
+
+### 11.3 路由中间件

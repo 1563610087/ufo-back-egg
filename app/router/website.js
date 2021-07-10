@@ -5,10 +5,10 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.post('/allSites', controller.website.getAllSites);
-  router.post('/addWeb', controller.website.addWeb);
-  router.post('/addSite', controller.website.addSite);
-  router.post('/delSite', controller.website.delSite);
-  router.post('/updateSite', controller.website.updateSite);
-  router.post('/getIcon', controller.website.getIcon);
+  router.post('/data/allSites', controller.website.getAllSites);
+  router.post('/data/addWeb', controller.website.addWeb);
+  router.post('/data/addSite', controller.website.addSite);
+  router.post('/data/delSite', controller.website.delSite);
+  router.post('/data/updateSite', controller.website.updateSite);
+  router.post('/data/getIcon', controller.website.getIcon);
 };
