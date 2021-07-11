@@ -18,7 +18,7 @@ return async function errorHandler(ctx, next) {
         error:error,
       };
       if (status === 422) {
-        ctx.body.detail = err.errors;
+        ctx.body.detail = `${err.errors[0].field} ${err.errors[0].message}`
       }
       ctx.status = status;
       

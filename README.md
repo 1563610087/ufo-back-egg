@@ -131,6 +131,50 @@ npm install -g sequelize-automate
 sequelize-automate -t egg -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e mysql -o app/model
 ```
 
+### 3.4 model配置信息
+
+```javascript
+module.exports = app => {
+ 
+  const { STRING, INTEGER, DATE } = app.Sequelize;
+ 
+  const Announces = app.model.define('announces', {
+    id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+    title: { type: STRING, allowNull: false },
+    content: { type: STRING, allowNull: false },
+    isTop: { type: INTEGER, defaultValue: 1, field: 'is_top' },
+    createDate: { type: DATE, field: 'create_date' },
+    createBy: { type: STRING, field: 'create_by' },
+    updateDate: { type: DATE, field: 'update_date' },  //field 转驼峰
+    updateBy: { type: STRING, field: 'update_by' },
+ 
+  }, {
+    timestamps: false,  //去除createAt updateAt
+    freezeTableName: true,  使用自定义表名
+    // 实例对应的表名
+    tableName: 'user',
+    // 如果需要sequelize帮你维护createdAt,updatedAt和deletedAt必须先启用timestamps功能
+    // 将createdAt对应到数据库的created_at字段
+    createdAt: 'created_at',
+    // 将updatedAt对应到数据库的updated_at字段
+    updatedAt: 'updated_at',
+    //And deletedAt to be called destroyTime (remember to enable paranoid for this to work)
+    deletedAt: false, //'deleted_at',
+    //删除数据时不删除数据，而是更新deleteAt字段 如果需要设置为true，则上面的deleteAt字段不能为false，也就是说必须启用
+    paranoid: false
+  });
+ 
+  return Announces;
+ 
+};
+```
+
+```
+    createdAt: 'create_time',
+    updatedAt:'update_time',
+    deletedAt:'delete_time'
+```
+
 ## 4 返回结果
 
 ```javascript
@@ -478,3 +522,8 @@ module.exports = {
 
 
 ### 11.3 路由中间件
+
+## 12 增删改查
+
+### 1 插入数据
+

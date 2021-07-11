@@ -1,4 +1,4 @@
-const whiteList=['/user/login']//白名单（一般登录注册这两个接口不需要校验token）此处也可配置在全局
+const whiteList=['/user/login','/user/register']//白名单（一般登录注册这两个接口不需要校验token）此处也可配置在全局
 
 module.exports=(options)=>{
     return async function(ctx,next){

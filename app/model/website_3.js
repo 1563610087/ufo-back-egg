@@ -56,11 +56,20 @@ module.exports = app => {
     icon_url: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      defaultValue: null,
+      defaultValue: "",
       primaryKey: false,
       autoIncrement: false,
       comment: "网站图标地址",
       field: "icon_url"
+    },
+    is_failure: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      defaultValue: "1",
+      primaryKey: false,
+      autoIncrement: false,
+      comment: "0失效，1不失效",
+      field: "is_failure"
     }
   };
   const options = {

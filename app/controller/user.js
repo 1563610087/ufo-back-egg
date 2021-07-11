@@ -23,6 +23,13 @@ class UserController extends Controller {
     const token = app.jwt.sign(data, app.config.jwt.secret)
     ctx.body = new SuccessModel({token:token})
   }
+
+  async register() {
+    const { ctx } = this;
+    const list = await ctx.service.user.register()
+    // console.log(this.service.user,222)
+    ctx.body = new SuccessModel(list)
+  }
 }
 
 module.exports = UserController;
