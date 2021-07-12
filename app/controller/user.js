@@ -19,15 +19,20 @@ class UserController extends Controller {
 
   async login() {
     const { ctx,app } = this
-    const data = ctx.request.body
-    const token = app.jwt.sign(data, app.config.jwt.secret)
-    ctx.body = new SuccessModel({token:token})
+    const { userName } = ctx.request.body
+    const result = await ctx.service.user.login()
+    if(result.length===0){
+      ctx.body = new ErrorModel('用户名或密码错误')
+    }else {
+      const token = app.jwt.sign(userName, app.config.jwt.secret)
+      ctx.body = new SuccessModel({token:token})
+    } 
+    
   }
 
   async register() {
     const { ctx } = this;
     const list = await ctx.service.user.register()
-    // console.log(this.service.user,222)
     ctx.body = new SuccessModel(list)
   }
 }

@@ -5,7 +5,7 @@ module.exports=(options)=>{
         if(!whiteList.some(item=>item==ctx.request.url)){//判断接口路径是否在白名单
             let token = ctx.request.header.authorization//拿到token
             if(token){//如果token存在
-                let decoded = ctx.app.jwt.verify(token.slice(7),ctx.app.config.jwt.secret)//解密token
+                let decoded = ctx.app.jwt.verify(token,ctx.app.config.jwt.secret)//解密token
                 if(decoded&&decoded.message){
                     ctx.body={
                         code:0,

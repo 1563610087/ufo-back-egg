@@ -17,10 +17,14 @@ return async function errorHandler(ctx, next) {
         code:status,
         error:error,
       };
+      
       if (status === 422) {
         ctx.body.detail = `${err.errors[0].field} ${err.errors[0].message}`
+        ctx.status = 200;
+      }else{
+        ctx.status = status;
       }
-      ctx.status = status;
+      
       
     }
   };
