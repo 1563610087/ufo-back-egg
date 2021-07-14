@@ -27,7 +27,7 @@ module.exports = {
   },
 
   //引入axios
-  http : {
+  http: {
     enable: true,
     package: 'egg-axios'
   },
@@ -36,7 +36,10 @@ module.exports = {
   jwt: {
     enable: true,
     package: "egg-jwt"
-  }
-
-
+  },
+  //添加图形验证码插件
+  captcha: {
+    enable: true,
+    package: 'svg-captcha',
+  },
 };

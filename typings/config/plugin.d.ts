@@ -20,6 +20,7 @@ import 'egg-validate';
 import 'egg-cors';
 import 'egg-axios';
 import 'egg-jwt';
+import 'svg-captcha';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -41,5 +42,6 @@ declare module 'egg' {
     cors?: EggPluginItem;
     http?: EggPluginItem;
     jwt?: EggPluginItem;
+    captcha?: EggPluginItem;
   }
 }

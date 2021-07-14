@@ -527,3 +527,44 @@ module.exports = {
 
 ### 1 插入数据
 
+## 13 图形验证码
+
+1 安装
+
+使用svg-captcha和egg-session实现图形验证码，egg框架本身已自动集成egg-session
+
+```
+npm install svg-captcha --save
+```
+
+2 引入插件
+
+```
+ module.exports.captcha = {
+    enable: true,
+    package: 'svg-captcha',
+};//添加svg插件并开启插件
+
+module.exports.session = {
+    enable: true,
+    package: 'egg-session',
+};
+```
+
+3 获取验证码
+
+```javascript
+async captcha() {
+    const captcha = svgCaptcha.create({
+      size: 4,
+      fontSize: 50,
+      width: 100,
+      height: 40,
+      bacground: '#cc9966'
+    });
+    //将验证码的文本传入session中保存
+    this.ctx.session.code = captcha.text;
+    return captcha;
+  }
+```
+
