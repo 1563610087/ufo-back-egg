@@ -37,9 +37,16 @@ module.exports = {
     enable: true,
     package: "egg-jwt"
   },
+
   //添加图形验证码插件
   captcha: {
     enable: true,
     package: 'svg-captcha',
   },
+
+  //引入redis
+  redis : {
+    enable: true,
+    package: 'egg-redis',
+  }
 };

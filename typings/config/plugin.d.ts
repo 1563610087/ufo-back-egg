@@ -21,6 +21,7 @@ import 'egg-cors';
 import 'egg-axios';
 import 'egg-jwt';
 import 'svg-captcha';
+import 'egg-redis';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -43,5 +44,6 @@ declare module 'egg' {
     http?: EggPluginItem;
     jwt?: EggPluginItem;
     captcha?: EggPluginItem;
+    redis?: EggPluginItem;
   }
 }

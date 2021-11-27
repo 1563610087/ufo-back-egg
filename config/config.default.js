@@ -18,6 +18,15 @@ module.exports = appInfo => {
     },
   };
 
+  config.redis = {
+    client: {
+      port: 6379, 
+      host: '127.0.0.1', 
+      password: '',
+      db: 0,
+    },
+  }
+
   config.http = {
     headers: {
       common: {
@@ -30,11 +39,11 @@ module.exports = appInfo => {
   config.jwt = {
     secret: "123456"//自定义 token 的加密条件字符串
   },
-  config.security = {
-    csrf: {
-      enable: false,
-    }
-  },
+    config.security = {
+      csrf: {
+        enable: false,
+      }
+    },
     /* 配置允许跨域 */
     config.cors = {
       credentials: true,

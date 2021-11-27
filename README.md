@@ -568,3 +568,61 @@ async captcha() {
   }
 ```
 
+## 14 接入redis
+
+1 安装
+
+npm i egg-redis --save
+
+2 引入插件
+
+```
+redis = {
+    enable: true,
+    package: 'egg-redis',
+}
+```
+
+3 redis连接配置
+
+```javascript
+config.redis = {
+  client: {
+	port: 6379, // Redis port
+	host: '127.0.0.1', // Redis host
+	password: 'auth',
+	db: 0,
+  },
+}
+```
+
+4 应用
+
+```javascript
+const Service = require('egg').Service;
+
+class RedisService extends Service {
+    async set(key, value, seconds) {
+        value = JSON.stringify(value);
+        if (this.app.redis) {
+            if (!seconds) {
+                return await this.app.redis.set(key, value);
+            } else {
+                return await this.app.redis.set(key, value, 'EX', seconds)
+            }
+        }
+    }
+
+    async get(key) {
+        if (this.app.redis) {
+            var data = await this.app.redis.get(key);
+            if (!data) return;
+            return JSON.parse(data)
+        }
+    }
+
+}
+
+module.exports = RedisService;
+```
+

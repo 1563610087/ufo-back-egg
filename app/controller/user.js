@@ -43,12 +43,14 @@ class UserController extends Controller {
 
   //获取验证码
   async captcha() {
-    const ctx = this.ctx;
-    let captcha = await ctx.service.user.captcha();
-    ctx.response.type = 'image/svg+xml'; // 知道你个返回的类型
-    ctx.body = new SuccessModel({ code: captcha.data }); // 返回一张图片
-    ctx.session.loginCode = captcha.text.toLowerCase();
-    ctx.session.maxAge = 1000 * 60 * 10;
+    const ctx = this.ctx
+    // let captcha = await ctx.service.user.captcha()
+    // ctx.session.loginCode = captcha.text.toLowerCase()
+    const { redis } = this.app
+    const dbRedis = await ctx.service.redis.set('aaa',22222,15)
+    // ctx.session.maxAge = 1000 * 60 * 10
+    ctx.body = new SuccessModel({ code: dbRedis})
+
   }
 }
 
