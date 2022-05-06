@@ -64,7 +64,7 @@ class WebsiteService extends Service {
     const { app, ctx } = this;
     const { siteId } = ctx.request.body
     const sql = `delete from website_3 where site_id='${siteId}'`
-    const [results] = app.model.query(sql)
+    const results = app.model.query(sql)
     return results;
   }
 

@@ -21,11 +21,11 @@ module.exports = appInfo => {
   }
   config.sequelize = {
     dialect: 'mysql',
-    host: 'sh-cynosdbmysql-grp-f1vualkg.sql.tencentcdb.com',
+    host: 'sh-cynosdbmysql-grp-ajbzcxiw.sql.tencentcdb.com',
     username: 'root',
-    password: 'yaosheng@123',
-    port: '24842',
-    database: 'ufo-nav'
+    password: 'Abcd@1234',
+    port: '27182',
+    database: 'tang'
   }
   return {
     ...config,
