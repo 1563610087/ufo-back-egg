@@ -4,6 +4,15 @@ module.exports = app => {
   const DataTypes = app.Sequelize;
   const sequelize = app.model;
   const attributes = {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: "id",
+      field: "id"
+    },
     name: {
       type: DataTypes.STRING(255),
       allowNull: true,

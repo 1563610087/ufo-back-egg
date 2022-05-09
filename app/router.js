@@ -7,4 +7,5 @@ module.exports = app => {
   require('./router/home')(app);
   require('./router/user')(app);
   require('./router/website')(app);
+  require('./router/template')(app);
 };
