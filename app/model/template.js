@@ -8,8 +8,8 @@ module.exports = app => {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: null,
-      primaryKey: false,
-      autoIncrement: false,
+      primaryKey: true,
+      autoIncrement: true,
       comment: "id",
       field: "id"
     },
@@ -48,6 +48,24 @@ module.exports = app => {
       autoIncrement: false,
       comment: "npm包名",
       field: "npmName"
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: "创建时间",
+      field: "createdAt"
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: "更新时间",
+      field: "updatedAt"
     }
   };
   const options = {

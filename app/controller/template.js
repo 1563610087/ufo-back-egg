@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const { SuccessModel, ErrorModel } = require('../utils/resModel.js')
 
 class templateController extends Controller {
   async getTemplateInfo() {

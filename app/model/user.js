@@ -49,32 +49,32 @@ module.exports = app => {
       comment: "手机号",
       field: "phone"
     },
-    create_time: {
+    create_at: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: "创建时间",
-      field: "create_time"
+      field: "create_at"
     },
-    update_time: {
+    update_at: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "update_time"
+      field: "update_at"
     },
-    delete_time: {
+    delete_at: {
       type: DataTypes.DATE,
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: "删除时间",
-      field: "delete_time"
+      field: "delete_at"
     },
     status: {
       type: DataTypes.STRING(1),
@@ -89,10 +89,7 @@ module.exports = app => {
   const options = {
     tableName: "user",
     comment: "",
-    indexes: [],
-    createdAt: 'create_time',
-    updatedAt:'update_time',
-    deletedAt:'delete_time'
+    indexes: []
   };
   const UserModel = sequelize.define("user_model", attributes, options);
   return UserModel;
