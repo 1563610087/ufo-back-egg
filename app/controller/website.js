@@ -11,7 +11,7 @@ class WebsiteController extends Controller {
       ctx.body = new SuccessModel(list)
   }
 
-  //添加二级网站分类
+  //添加二级网站分类2
   async addWeb() {
     const { ctx } = this;
       const list = await ctx.service.website.addWeb()
