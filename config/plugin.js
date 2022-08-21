@@ -33,20 +33,20 @@ module.exports = {
   },
 
   //引入jwt
-  jwt: {
-    enable: true,
-    package: "egg-jwt"
-  },
+  // jwt: {
+  //   enable: true,
+  //   package: "egg-jwt"
+  // },
 
   //添加图形验证码插件
-  captcha: {
-    enable: true,
-    package: 'svg-captcha',
-  },
+  // captcha: {
+  //   enable: true,
+  //   package: 'svg-captcha',
+  // },
 
   //引入redis
-  redis : {
-    enable: true,
-    package: 'egg-redis',
-  }
+  // redis : {
+  //   enable: true,
+  //   package: 'egg-redis',
+  // }
 };

@@ -12,6 +12,7 @@
     "egg-cors": "^2.2.3",
     "egg-jwt": "^3.1.7",
     "egg-redis": "^2.4.0",
+    "egg-scripts": "^2.17.0",
     "egg-sequelize": "^6.0.0",
     "egg-session": "^3.3.0",
     "egg-validate": "^2.0.2",
@@ -24,10 +25,13 @@
   },
   "scripts": {
     "deploy": "serverless deploy",
+    "start": "egg-scripts start --port=3000 --env=prod --daemon",
+    "stop": "egg-scripts stop",
     "dev": "egg-bin dev",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "model": "sequelize-automate -t egg  -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e mysql -o app/model"
+    "model": "sequelize-automate -t egg  -h localhost -d ufo-nav -u root -p 123456 -P 3306 -e mysql -o app/model",
+    "docker": "docker build -t ufo-end ."
   },
   "ci": {
     "version": "10"

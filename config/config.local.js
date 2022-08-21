@@ -18,7 +18,7 @@ module.exports = appInfo => {
     port: 3306,
     database: 'ufo-nav',
     username: 'root',
-    password: "123456",
+    password: "123456"
   }
   return {
     ...config,
